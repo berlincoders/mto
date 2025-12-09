@@ -1,55 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
-.angular-logo {
-  width: 200px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-
-  &:hover {
-    transform: scale(1.1);
-    opacity: 0.8;
-  }
-}
-
-.circle-container {
+/* src/styles.scss */
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
   position: relative;
-  width: px;
-  height: px;
-  margin: 40px auto;
+  background-color: #ffffff;
 }
 
-.main-image {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  display: block;
+.hero-image {
+  position: relative;
+  z-index: 2;
+  width: 640px;
+  height: auto;
+  transition: transform 0.5s ease; /* transición suave */
+  cursor: pointer; /* opcional, indica interactividad */
 }
 
-.pill-circle {
+.hero-image:hover {
+  transform: scale(1.1); /* zoom al 110% */
+}
+
+.image-glow {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 300px;
-  height: 300px;
   transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 0, 255, 0.5), transparent 70%);
+  filter: blur(100px);
+  z-index: 1;
+  transition: transform 0.5s ease; /* el glow también puede animarse */
 }
 
-.pill-circle .pill {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform-origin: 0 -150px; /* radio = la mitad del contenedor */
-  padding: 5px 10px;
-  background-color: #ff5722;
-  color: white;
-  border-radius: 20px;
-  text-decoration: none;
-  transition: transform 0.3s;
-}
-
-.pill-circle .pill:nth-child(1) { transform: rotate(0deg) translateY(-150px); }
-.pill-circle .pill:nth-child(2) { transform: rotate(90deg) translateY(-150px); }
-.pill-circle .pill:nth-child(3) { transform: rotate(180deg) translateY(-150px); }
-.pill-circle .pill:nth-child(4) { transform: rotate(270deg) translateY(-150px); }
-
-.pill-circle .pill:hover {
-  transform: scale(1.2) rotate(var(--rotate));
+.image-wrapper:hover .image-glow {
+  transform: translate(-50%, -50%) scale(1.1); /* hace zoom junto con la imagen */
 }
