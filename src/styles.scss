@@ -1,4 +1,87 @@
 /* src/styles.scss */
+
+:root {
+  --primary-color: #ff4757;
+  --white-color: #fff;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+  ul {
+    list-style: none; /* quita los bullets */
+  }
+  a {
+    color: inherit;           /* hereda color del contenedor */
+    text-decoration: none;    /* sin subrayado */
+    vertical-align: middle;   /* alineación vertical básica */
+  }
+  body {
+font-family: 'Montserrat';
+font-size: 16px; /* tamaño base */
+line-height: 1.8;
+font-weight: 400; /* grosor normal */
+color: var(--primary-color);
+background-color: #ffffff; /* blanco */
+}
+
+.site {
+  display: flex;
+  align-items: center;       /* centra verticalmente */
+  justify-content: center;   /* centra horizontalmente */
+  height: auto;             /* ocupa toda la altura de la ventana */
+}
+.container  {
+
+  max-width: 480px;
+  width: 100% ;
+  padding:0 2em ;
+}
+
+nav {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  max-width: 400px;
+  width: 100%;
+  height: 500px;
+}
+
+nav .link {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  right: -20px; /* mejor que margin-right */
+  cursor: pointer;
+  z-index: 99;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border-radius: 50%;
+  font-size: 20px;
+  text-align: center;
+}
+
+nav .link::before {
+  content: '';
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  background-color: #ff00ff80; /* temporal para visibilidad */
+  border-radius: 50% 0 0 50%;
+  transform: scale(2);
+  z-index: -1;
+}
+
+
+
+
+
+
 .image-wrapper {
   display: flex;
   justify-content: center;
