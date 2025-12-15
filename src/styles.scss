@@ -179,6 +179,18 @@ nav ul li a:hover i {
   color: var(--primary-color); /* Para que se vea sobre blanco */
 }
 
+/* span item*/
+nav ul li a span {
+  position: absolute;
+  right:calc(100% + 1em);
+  text-align: right;
+  font-size: 13px;
+  padding: 0 10px;
+  border-radius: 25px;
+  background-image: linear-gradient(to right, transparent 25px,var(--primary-color));
+
+}
+
 
 
 .image-wrapper {
