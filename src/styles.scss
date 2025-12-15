@@ -66,54 +66,42 @@ nav {
   max-width: 400px;
   width: 100%;
   height: 500px;
+  
 }
 
-nav .link {
-  width: 40px;
-  height: 40px;
-  display: flex;
+/* Píldora toggle */
+nav .link-pill {
+  position: absolute;
+  top: 395px;           /* ajustar verticalmente */
+  transform: none;     /* sin compensación anterior */
+
+  display: inline-block;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: 50%;
-  margin-top: -20px; /* mejor que margin-right */
+
+  padding: 0.07em 0.4em; /* tamaño de la píldora */
+  border-radius: 50px;  /* borde redondeado */
+
+  background-color: #fff;  /* fondo blanco */
+  border: 2px solid #000;  /* borde negro */
+  color: #000;             /* texto negro */
+
+  font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
   z-index: 99;
-  background-color: var(--primary-color);
-  color: var(--white-color);
-  border-radius: 50%;
-  font-size: 20px;
   text-align: center;
+
+   transform: rotate(25deg); /* aquí se aplica la rotación */
+   border-radius: 0;
 }
 
-/* efecto Before. llama / glow interior */
-nav .link::before {
-  content: '';
-  position: absolute;
-  width: inherit;
-  height: inherit;
-  background-image: linear-gradient(to left, transparent, 25%,var(--primary-color, #ff00ff80));
+/* Opcional: hover */
+nav .link-pill:hover {
+  background-color: #f2f2f2;
+}
 
-  border-radius: 50% 0 0 50%;    /* media capsula redondeado izquierda plano derecha */
-  transform: scale(2);
-  z-index: -1;
-}
-/* efecto after */
-nav .link::after {
-  content: '';
-  position: absolute;
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
- background-color:var(--secondary-color); /* temporal para visibilidad */
-  border-radius: 0 50% 50% 0;
-  transform: scale(2);
-  z-index: -1;
-  opacity: .5 ;
-  transition: opacity .3s;
-}
-nav .link:hover::after {
-  opacity: .9;
-}
+
 
 /* Accion open Menu  */
 nav .link .close ,
