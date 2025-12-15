@@ -1,193 +1,132 @@
 /* src/styles.scss */
 
 :root {
-  --primary-color: #cc00cc;   /* fucsia */
-  --secondary-color: #ff66ff; /* fucsia más claro, para hover o acentos */
-  --accent-color: #00ffff;    /* cian brillante para contraste */
-  --white-color: #ffffff;      /* blanco */
-  --dark-color: #1a1a1a;       /* para texto o fondo oscuro */
+  --primary-color: #cc00cc;
+  --secondary-color: #ff66ff;
+  --accent-color: #00ffff;
+  --white-color: #ffffff;
+  --dark-color: #1a1a1a;
   --gray-color: #f2f2f2;
-  --darkfucsia-color: #cc00cc;
-
 }
+
 * {
   margin: 0;
   padding: 0;
 }
 
-  ul {
-    list-style: none; /* quita los bullets */
-  }
-  a {
-    color: inherit;           /* hereda color del contenedor */
-    text-decoration: none;    /* sin subrayado */
-    vertical-align: middle;   /* alineación vertical básica */
-  }
-  body {
-font-family: 'Montserrat';
-font-size: 16px; /* tamaño base */
-line-height: 1.8;
-font-weight: 400; /* grosor normal */
-color: var(--primary-color);
-background-color: #ffffff; /* blanco */
+ul {
+  list-style: none;
 }
 
-.side-nav {
-  position: relative;
-  z-index: 10; /* por encima */
+a {
+  color: inherit;
+  text-decoration: none;
+  vertical-align: middle;
 }
-/*imagen por debajo del contenido principal */
-.main-content {
-  position: relative;
-  z-index: 1;
+
+body {
+  font-family: 'Montserrat';
+  font-size: 16px;
+  line-height: 1.8;
+  font-weight: 400;
+  color: var(--primary-color);
+  background-color: var(--white-color);
 }
 
 .site {
   display: flex;
-  align-items: center;       /* centra verticalmente */
-  justify-content: center;   /* centra horizontalmente */
-  height: auto;             /* ocupa toda la altura de la ventana */
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: auto;
 }
+
 .container {
   max-width: 480px;
   width: 100%;
   padding: 0 2em;
-
-  margin-top: 150px; /* ajusta este valor para bajar el menú */
   display: flex;
-  flex-direction: column; /* apila contenido verticalmente */
-  align-items: flex-start; /* o center si quieres centrar horizontalmente */
+  flex-direction: column;
+  align-items: center;
+}
+
+/* NAV y toggle */
+.side-nav {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 101; /* menú por encima de todo */
 }
 
 nav {
   position: relative;
-  display: flex;
-  justify-content: flex-end;
-  max-width: 400px;
   width: 100%;
-  height: 500px;
-  
+  max-width: 400px;
+  height: auto;
+  margin-bottom: -120px; /* hace que la imagen se suba debajo */
 }
 
-/* Píldora toggle */
+/* Píldora toggle Menu */
 nav .link-pill {
-  position: absolute;
-  top: 395px;           /* ajustar verticalmente */
-  transform: none;     /* sin compensación anterior */
-
-  display: inline-block;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  padding: 0.07em 0.4em; /* tamaño de la píldora */
-  border-radius: 50px;  /* borde redondeado */
-
-  background-color: #fff;  /* fondo blanco */
-  border: 2px solid #000;  /* borde negro */
-  color: #000;             /* texto negro */
-
-  font-size: 18px;
+  padding: 0.5em 1.2em;
+  background-color: var(--white-color);
+  border: 2px solid var(--dark-color);
+  color: var(--dark-color);
   font-weight: bold;
+  font-size: 18px;
   cursor: pointer;
-  z-index: 99;
-  text-align: center;
-
-   transform: rotate(25deg); /* aquí se aplica la rotación */
-   border-radius: 0;
+  border-radius: 25px;
+  z-index: 102; /* encima de submenu */
+  transform: rotate(0deg);
 }
 
-/* Opcional: hover */
-nav .link-pill:hover {
-  background-color: #f2f2f2;
-}
-
-
-
-/* Accion open Menu  */
-nav .link .close ,
-nav input:checked ~  label .menu{
-  display: none;
-}
-nav input:checked ~  label .close{
-  display: block;
-}
-
-
-
-
+/* Submenu */
 nav ul.submenu {
   position: absolute;
-  top: -150px; /* valor negativo sube todo el submenu */
-  right: 4em; /* espacio desde el botón */
+  top: 60px; /* debajo del toggle */
+  left: 50%;
+  transform: translateX(-50%) rotate(90deg);
   width: 350px;
-  height: 500px;
-  transform: rotate(90deg); /* rota todo el menú */
+  height: 350px;
   visibility: hidden;
-  transition: visibility  .1s; /* retarda la visibilidad hasta que termine la animación */
+  transition: visibility 0.1s;
+  z-index: 101;
+}
 
-}
 nav > input:checked ~ ul {
-  visibility: inherit;
+  visibility: visible;
 }
+
+/* 5 elementos en círculo */
+nav ul.submenu li {
+  --angle: 0deg;
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transform-origin: center center;
+  opacity: 0;
+  transition: transform 0.7s, opacity 0.2s;
+}
+
+nav ul li:nth-child(1) { --angle: 0deg; }
+nav ul li:nth-child(2) { --angle: 72deg; }
+nav ul li:nth-child(3) { --angle: 144deg; }
+nav ul li:nth-child(4) { --angle: 216deg; }
+nav ul li:nth-child(5) { --angle: 288deg; }
 
 nav > input:checked ~ ul li {
-transform: rotate(calc((-180deg / 6) * var(--item)))translateX(0);
-opacity: 1;
+  opacity: 1;
+  transform: rotate(var(--angle)) translate(150px) rotate(calc(-1 * var(--angle)));
 }
 
-
-/* 6 +1 item */
-nav ul.submenu li {
-  --item:1;
-  position: absolute;
-  width: 350px;
-  height: 100px;
-  transform: rotate(calc((-180deg / 6) * var(--item)))translateX(350px);
-  font-weight: bold;
-  transform-origin: right center;
-  display: flex;
-  align-items: center;
-  opacity: 0;
-  transition: transform .7s, opacity .2s;
-  /*;
-  top: 50%;
-  right: 0;
-  background-color: var(--primary-color);
-  margin-bottom: 10px;
-  align-items: center;
-  justify-content: center;
-  color: var(--white-color);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
-}
-nav ul li:nth-child(2) {
-  --item:2;
-}
-nav ul li:nth-child(3) {
-  --item:3;
-}
-nav ul li:nth-child(4) {
-  --item:4;
-}
-nav ul li:nth-child(5) {
-  --item:5;
-}
-nav ul li:nth-child(6) {
-  --item:6;
-}
-
-nav ul li a {
-  position: relative;
-  display: flex;
-  align-items:center;
-  justify-content: center;
-  /* width: 100%; */
-  /*text-align: center;*/
-  /*padding: 1em 0;*/
-  /* color: var(--white-color);*/
-  /*background-color: var(--primary-color);*/
-  /*border-radius: 8px; */
-  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
-}
 nav ul li a i {
   font-size: 20px;
   width: 36px;
@@ -198,79 +137,17 @@ nav ul li a i {
   justify-content: center;
   background-color: var(--primary-color);
   color: var(--white-color);
-  border: 2px solid transparent;
-  transition: border .3s, background-color .3s, color .3s;
-}
-nav ul li a:hover i {
-  background-color: transparent;
-  border-color: var(--primary-color);
-  color: var(--primary-color); /* Para que se vea sobre blanco */
 }
 
-/* span item*/
-nav ul li a span {
-  position: absolute;
-  right:calc(100% + 1em);
-  text-align: right;
-  font-size: 13px;
-  padding: 0 10px;
-  border-radius: 25px;
-  background-image: linear-gradient(to right, transparent 25px,var(--primary-color) );
-  z-index: -1;
-  transform: translateX(0);
-  transition: transform .4s ease, color .3s;
-
-
-  /*transform: translateX(50px); */
-  /*transition: color .3s;*/
-}
-nav ul li a span::before{
-
-  content: '';
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: calc(100% - 4px);
-  height: calc(100% - 4px);
-  border-radius: 25px;
-  background-color: var(--white-color ); /* enmi caso tiene que ser blanco  */
-  z-index:-1;
-  transition: background-color .3s;
-}
-nav ul li a:hover span::before {
-  background-color: transparent;
-}
-nav ul li a span {
-  transform-origin: right center;
-}
-nav ul li a:hover span {
-  color: var(--white-color);
-}
-nav ul li:nth-child(1) a i {
-  transform: rotate(292deg);
-}
-nav ul li:nth-child(2) a i {
-  transform: rotate(315deg);
-}
-nav ul li:nth-child(4) a i {
-  transform: rotate(22deg);
-}
-nav ul li:nth-child(5) a i {
-  transform: rotate(67deg);
-}
-
-
-
-
+/* Main content con imagen */
 .main-content {
-  position: relative;    /* para stacking con z-index */
-  z-index: 1;            /* detrás del menú */
+  position: relative;
+  z-index: 1; /* detrás del menú */
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* evita centrar verticalmente */
-  top: 50%;              /* empieza en la mitad de la pantalla, donde está el menú */
-  transform: translateY(-600px); /* ajusta para que quede justo debajo */
+  align-items: flex-start;
   width: 100%;
+  margin-top: -120px; /* sube la imagen debajo del menú */
 }
 
 .image-wrapper {
@@ -279,19 +156,20 @@ nav ul li:nth-child(5) a i {
   align-items: flex-start;
   width: 100%;
 }
+
 .hero-image {
   position: relative;
-  z-index: 2;
-  width: 640px;
+  z-index: 1;
+  width: 608px;
   height: auto;
-  transform: scale(0.95); /* reduce la imagen al 95% */
-  transition: transform 0.5s ease; /* mantiene animación hover */
+  transition: transform 0.5s ease;
   cursor: pointer;
 }
 
 .hero-image:hover {
-  transform: scale(1.05); /* sube un poco al hacer hover */
+  transform: scale(1.05);
 }
+
 .image-glow {
   position: absolute;
   top: 50%;
@@ -300,12 +178,12 @@ nav ul li:nth-child(5) a i {
   width: 800px;
   height: 800px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 0, 255, 0.5), transparent 70%);
+  background: radial-gradient(circle, rgba(255,0,255,0.5), transparent 70%);
   filter: blur(100px);
-  z-index: 1;
-  transition: transform 0.5s ease; /* el glow también puede animarse */
+  z-index: 0;
+  transition: transform 0.5s ease;
 }
 
 .image-wrapper:hover .image-glow {
-  transform: translate(-50%, -50%) scale(1.1); /* hace zoom junto con la imagen */
+  transform: translate(-50%, -50%) scale(1.1);
 }
