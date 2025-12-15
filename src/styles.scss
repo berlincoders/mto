@@ -120,19 +120,33 @@ nav ul.submenu {
   width: 350px;
   height: 500px;
   transform: rotate(90deg); /* rota todo el menú */
+  visibility: hidden;
+  transition: visibility  .1s; /* retarda la visibilidad hasta que termine la animación */
 
 }
+nav > input:checked ~ ul {
+  visibility: inherit;
+}
+
+nav > input:checked ~ ul li {
+transform: rotate(calc((-180deg / 6) * var(--item)))translateX(0);
+opacity: 1;
+}
+
+
 /* 6 +1 item */
 nav ul.submenu li {
   --item:1;
   position: absolute;
   width: 175px;;
   height: 60px;
-  transform: rotate(calc((-180deg / 6) * var(--item)));
+  transform: rotate(calc((-180deg / 6) * var(--item)))translateX(175px);
   font-weight: bold;
   transform-origin: right center;
   display: flex;
   align-items: center;
+  opacity: 0;
+  transition: transform .7s, opacity .2s;
   /*;
   top: 50%;
   right: 0;
@@ -201,7 +215,12 @@ nav ul li a span {
   border-radius: 25px;
   background-image: linear-gradient(to right, transparent 25px,var(--primary-color) );
   z-index: -1;
-  transition: color .3s;
+  transform: translateX(0);
+  transition: transform .4s ease, color .3s;
+
+
+  /*transform: translateX(50px); */
+  /*transition: color .3s;*/
 }
 nav ul li a span::before{
 
@@ -218,6 +237,9 @@ nav ul li a span::before{
 }
 nav ul li a:hover span::before {
   background-color: transparent;
+}
+nav ul li a span {
+  transform-origin: right center;
 }
 nav ul li a:hover span {
   color: var(--white-color);
