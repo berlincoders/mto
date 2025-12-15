@@ -62,7 +62,7 @@ nav .link {
   justify-content: center;
   position: absolute;
   top: 50%;
-  right: -20px; /* mejor que margin-right */
+  margin-top: -20px; /* mejor que margin-right */
   cursor: pointer;
   z-index: 99;
   background-color: var(--primary-color);
@@ -101,6 +101,18 @@ nav .link:hover::after {
   opacity: .9;
 }
 
+/* Accion open Menu  */
+nav .link .close ,
+nav input:checked ~  label .menu{
+  display: none;
+}
+nav input:checked ~  label .close{
+  display: block;
+}
+
+
+
+
 nav ul.submenu {
   position: absolute;
   top: 0;
@@ -110,7 +122,7 @@ nav ul.submenu {
   transform: rotate(90deg); /* rota todo el menú */
 
 }
-
+/* 6 +1 item */
 nav ul.submenu li {
   --item:1;
   position: absolute;
