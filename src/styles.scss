@@ -1,8 +1,14 @@
 /* src/styles.scss */
 
 :root {
-  --primary-color: #ff4757;
-  --white-color: #fff;
+  --primary-color: #ff00ff;   /* fucsia */
+  --secondary-color: #ff66ff; /* fucsia más claro, para hover o acentos */
+  --accent-color: #00ffff;    /* cian brillante para contraste */
+  --white-color: #ffffff;      /* blanco */
+  --dark-color: #1a1a1a;       /* para texto o fondo oscuro */
+  --gray-color: #f2f2f2;
+  --darkfucsia-color: #cc00cc;
+
 }
 * {
   margin: 0;
@@ -66,16 +72,80 @@ nav .link {
   text-align: center;
 }
 
+/* efecto Before. llama / glow interior */
 nav .link::before {
   content: '';
   position: absolute;
   width: inherit;
   height: inherit;
-  background-color: #ff00ff80; /* temporal para visibilidad */
-  border-radius: 50% 0 0 50%;
+  background-image: linear-gradient(to left, transparent, 25%,var(--primary-color, #ff00ff80));
+
+  border-radius: 50% 0 0 50%;    /* media capsula redondeado izquierda plano derecha */
   transform: scale(2);
   z-index: -1;
 }
+/* efecto after */
+nav .link::after {
+  content: '';
+  position: absolute;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+ background-color:var(--secondary-color); /* temporal para visibilidad */
+  border-radius: 0 50% 50% 0;
+  transform: scale(2);
+  z-index: -1;
+  opacity: .5 ;
+  transition: opacity .3s;
+}
+nav .link:hover::after {
+  opacity: .9;
+}
+
+nav ul.submenu {
+  position: absolute;
+  top: 0;
+  right: 4em; /* espacio desde el botón */
+  width: 350px;
+  height: 500px;
+  transform: rotate(90deg); /* rota todo el menú */
+
+}
+
+nav ul.submenu li {
+  --item:1;
+  position: absolute;
+  width: 175px;;
+  height: 60px;
+  transform: rotate(calc((-180deg / 6) * var(--item)));
+  font-weight: bold;
+  transform-origin: right center;
+  /*transform-origin: bottom right;
+  top: 50%;
+  right: 0;
+  background-color: var(--primary-color);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+}
+nav ul li:nth-child(2) {
+  --item:2;
+}
+nav ul li:nth-child(3) {
+  --item:3;
+}
+nav ul li:nth-child(4) {
+  --item:4;
+}
+nav ul li:nth-child(5) {
+  --item:5;
+}
+nav ul li:nth-child(6) {
+  --item:6;
+}
+
 
 
 
