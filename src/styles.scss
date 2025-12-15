@@ -129,7 +129,7 @@ nav input:checked ~  label .close{
 
 nav ul.submenu {
   position: absolute;
-  top: 0;
+  top: -150px; /* valor negativo sube todo el submenu */
   right: 4em; /* espacio desde el botón */
   width: 350px;
   height: 500px;
@@ -152,9 +152,9 @@ opacity: 1;
 nav ul.submenu li {
   --item:1;
   position: absolute;
-  width: 175px;;
-  height: 60px;
-  transform: rotate(calc((-180deg / 6) * var(--item)))translateX(175px);
+  width: 350px;
+  height: 100px;
+  transform: rotate(calc((-180deg / 6) * var(--item)))translateX(350px);
   font-weight: bold;
   transform-origin: right center;
   display: flex;
@@ -296,14 +296,14 @@ nav ul li:nth-child(5) a i {
   z-index: 2;
   width: 640px;
   height: auto;
-  transition: transform 0.5s ease; /* transición suave */
-  cursor: pointer; /* opcional, indica interactividad */
+  transform: scale(0.95); /* reduce la imagen al 95% */
+  transition: transform 0.5s ease; /* mantiene animación hover */
+  cursor: pointer;
 }
 
 .hero-image:hover {
-  transform: scale(1.1); /* zoom al 110% */
+  transform: scale(1.05); /* sube un poco al hacer hover */
 }
-
 .image-glow {
   position: absolute;
   top: 50%;
