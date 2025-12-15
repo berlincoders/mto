@@ -32,17 +32,31 @@ color: var(--primary-color);
 background-color: #ffffff; /* blanco */
 }
 
+.side-nav {
+  position: relative;
+  z-index: 10; /* por encima */
+}
+/*imagen por debajo del contenido principal */
+.main-content {
+  position: relative;
+  z-index: 1;
+}
+
 .site {
   display: flex;
   align-items: center;       /* centra verticalmente */
   justify-content: center;   /* centra horizontalmente */
   height: auto;             /* ocupa toda la altura de la ventana */
 }
-.container  {
-
+.container {
   max-width: 480px;
-  width: 100% ;
-  padding:0 2em ;
+  width: 100%;
+  padding: 0 2em;
+
+  margin-top: 150px; /* ajusta este valor para bajar el menú */
+  display: flex;
+  flex-direction: column; /* apila contenido verticalmente */
+  align-items: flex-start; /* o center si quieres centrar horizontalmente */
 }
 
 nav {
@@ -260,16 +274,23 @@ nav ul li:nth-child(5) a i {
 
 
 
+.main-content {
+  position: relative;    /* para stacking con z-index */
+  z-index: 1;            /* detrás del menú */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* evita centrar verticalmente */
+  top: 50%;              /* empieza en la mitad de la pantalla, donde está el menú */
+  transform: translateY(-600px); /* ajusta para que quede justo debajo */
+  width: 100%;
+}
+
 .image-wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-  background-color: #ffffff;
+  align-items: flex-start;
+  width: 100%;
 }
-
 .hero-image {
   position: relative;
   z-index: 2;
