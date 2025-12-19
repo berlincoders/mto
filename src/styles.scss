@@ -85,7 +85,7 @@ nav .link-pill {
   z-index: 102; /* encima de submenu */
 
 
-  transform: translateX(80px) + translateY(255px) + rotate(25deg); /* 👉 derecha */
+  transform: translateX(80px) translateY(255px) rotate(25deg); /* 👉 derecha */
 
   width: fit-content;
   white-space: nowrap;
@@ -97,9 +97,9 @@ nav .link-pill {
 /* Submenu */
 nav ul.submenu {
   position: absolute;
-  top: 60px; /* debajo del toggle */
+  top: 80px; /* debajo del toggle */
   left: 50%;
-  transform: translateX(-50%) rotate(90deg);
+  transform: translateX(-95%) rotate(90deg);
   width: 350px;
   height: 350px;
   visibility: hidden;
@@ -134,7 +134,7 @@ nav ul li:nth-child(5) { --angle: 288deg; }
 
 nav > input:checked ~ ul li {
   opacity: 1;
-  transform: rotate(var(--angle)) translate(150px) rotate(calc(-1 * var(--angle)));
+  transform: rotate(var(--angle)) translate(220px) rotate(calc(-1 * var(--angle)));
 }
 
 nav ul li a i {
@@ -196,4 +196,9 @@ nav ul li a i {
 
 .image-wrapper:hover .image-glow {
   transform: translate(-50%, -50%) scale(1.1);
+}
+
+nav ul.submenu li a span {
+  display: inline-block;
+  transform: rotate(-90deg); /* compensa la rotación del menú */
 }
